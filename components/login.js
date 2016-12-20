@@ -26,7 +26,8 @@ class Login extends Component {
       },
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        remember: true
       })
     })
     .then((response) => response.json())
