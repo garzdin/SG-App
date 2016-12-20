@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StyleSheet, View } from 'react-native';
+import {
+  AsyncStorage,
+  StyleSheet,
+  Navigator,
+  View
+} from 'react-native';
 import Login from './login';
 import Start from './start';
+
+var routes = {
+  login: Login,
+  start: Start
+};
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoggedIn: false,
+      initialRoute: 'login'
     }
   }
 
@@ -21,21 +32,25 @@ class App extends Component {
     })
   }
 
+  renderScene(route, navigator) {
+    let RouteComponent = routes[route.name];
+    return <RouteComponent route={route} navigator={navigator} />;
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.isLoggedIn ? <Start isLoggedIn={this.state.isLoggedIn} /> : <Login />}
-      </View>
+      <Navigator
+        style={styles.container}
+        initialRoute={{ name: this.state.isLoggedIn ? 'start' : 'login' }}
+        renderScene={this.renderScene}
+      />
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    flex: 1
   }
 })
 

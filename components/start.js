@@ -4,17 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  Button
 } from 'react-native';
-import Login from './login';
 
 class Start extends Component {
   constructor(props) {
     super(props)
     this.logout = this.logout.bind(this);
-    this.state = {
-      isLoggedIn: props.isLoggedIn
-    }
   }
 
   logout() {
@@ -23,27 +19,19 @@ class Start extends Component {
         console.log(error);
       }
     })
-    this.setState({ isLoggedIn: false });
+    this.props.navigator.replace({ name: 'login' });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this.state.isLoggedIn ? (
-          <View style={styles.container}>
-            <Text>Logout</Text>
-            <Button
-              color="#841584"
-              onPress={this.logout}
-              title="Logout"
-              accessibilityLabel="Login"
-            />
-          </View>
-        ) : (
-          <View style={styles.container}>
-            <Login />
-          </View>
-        )}
+        <Text>Logout</Text>
+        <Button
+          color="#841584"
+          onPress={this.logout}
+          title="Logout"
+          accessibilityLabel="Login"
+        />
       </View>
     )
   }

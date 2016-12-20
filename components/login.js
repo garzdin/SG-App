@@ -13,7 +13,6 @@ class Login extends Component {
     super(props)
     this.login = this.login.bind(this);
     this.state = {
-      loggedIn: false,
       email: '',
       password: ''
     }
@@ -32,19 +31,19 @@ class Login extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
       if (responseJson.token != null) {
         AsyncStorage.setItem('@SmartGarden:token', responseJson.token, (error) => {
           if (error) {
             console.log(error);
           }
-          this.setState({loggedIn: true});
+          this.props.navigator.replace({ name: 'start' });
         });
       }
     })
     .catch((error) => {
       console.log(error);
     })
+    .done();
   }
 
   render() {
@@ -57,13 +56,13 @@ class Login extends Component {
             placeholder='Email address'
             autoCapitalize='none'
             autoCorrect={false}
-            onChangeText={(email) => this.setState({email: email})}
+            onChangeText={(email) => this.setState({ email: email })}
           />
           <TextInput
             style={styles.input}
             placeholder='Password'
             secureTextEntry={true}
-            onChangeText={(password) => this.setState({password: password})}
+            onChangeText={(password) => this.setState({ password: password })}
           />
           <Button
             style={styles.button}
