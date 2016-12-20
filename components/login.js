@@ -5,7 +5,7 @@ import {
   Text,
   View,
   TextInput,
-  Button
+  TouchableHighlight
 } from 'react-native';
 
 class Login extends Component {
@@ -54,6 +54,7 @@ class Login extends Component {
             style={styles.input}
             keyboardType='email-address'
             placeholder='Email address'
+            placeholderTextColor='#d3d3d3'
             autoCapitalize='none'
             autoCorrect={false}
             onChangeText={(email) => this.setState({ email: email })}
@@ -61,16 +62,16 @@ class Login extends Component {
           <TextInput
             style={styles.input}
             placeholder='Password'
+            placeholderTextColor='#d3d3d3'
             secureTextEntry={true}
             onChangeText={(password) => this.setState({ password: password })}
           />
-          <Button
+          <TouchableHighlight
             style={styles.button}
-            color="#841584"
             onPress={this.login}
-            title="Login"
-            accessibilityLabel="Login"
-          />
+            >
+            <Text style={styles.label}>Login</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )
@@ -82,24 +83,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#192C3F',
   },
   form: {
+    width: 260,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   input: {
     height: 40,
-    width: 180,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderBottomWidth: 1,
+    borderRadius: 4,
     marginBottom: 10,
     paddingLeft: 14,
     paddingRight: 4,
+    color: '#ffffff'
   },
   button: {
-    backgroundColor: '#841584'
+    width: 260,
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: '#48CFAD',
+    paddingTop: 11
+  },
+  label: {
+    flex: 1,
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ffffff'
   }
 })
 

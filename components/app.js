@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   AsyncStorage,
   StyleSheet,
+  StatusBar,
   Navigator,
   View
 } from 'react-native';
@@ -39,11 +40,16 @@ class App extends Component {
 
   render() {
     return (
-      <Navigator
-        style={styles.container}
-        initialRoute={{ name: this.state.isLoggedIn ? 'start' : 'login' }}
-        renderScene={this.renderScene}
-      />
+      <View style={styles.container}>
+        <StatusBar
+          barStyle="light-content"
+        />
+        <Navigator
+          style={styles.container}
+          initialRoute={{ name: this.state.isLoggedIn ? 'start' : 'login' }}
+          renderScene={this.renderScene}
+        />
+      </View>
     )
   }
 }
