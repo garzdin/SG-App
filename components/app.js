@@ -9,7 +9,7 @@ import {
 import Login from './login';
 import Start from './start';
 
-var routes = {
+let routes = {
   login: Login,
   start: Start
 };
