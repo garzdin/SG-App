@@ -1,0 +1,3 @@
+rootProject.name = 'SGApp'
+
+include ':app'
