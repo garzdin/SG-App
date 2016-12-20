@@ -51,6 +51,10 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.form}>
+          <View style={styles.logo}>
+            <Text style={styles.logoLabelOne}>Smart</Text>
+            <Text style={styles.logoLabelTwo}>Garden</Text>
+          </View>
           <TextInput
             style={styles.input}
             keyboardType='email-address'
@@ -85,6 +89,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#192C3F',
+  },
+  logo: {
+    flexDirection: 'row',
+    marginBottom: 100
+  },
+  logoLabelOne: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#ffffff'
+  },
+  logoLabelTwo: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#48CFAD'
   },
   form: {
     width: 260,
