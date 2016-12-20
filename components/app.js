@@ -19,23 +19,23 @@ class App extends Component {
     super(props);
     this.state = {
       isLoggedIn: false,
-      initialRoute: 'login'
+      token: ''
     }
   }
 
   componentDidMount() {
     AsyncStorage.getItem('@SmartGarden:token', (error, result) => {
       if (result) {
-        this.setState({ isLoggedIn: true });
+        this.setState({ isLoggedIn: true, token: result });
       } else {
-        this.setState({ isLoggedIn: false });
+        this.setState({ isLoggedIn: false, token: '' });
       }
     })
   }
 
   renderScene(route, navigator) {
     let RouteComponent = routes[route.name];
-    return <RouteComponent route={route} navigator={navigator} />;
+    return <RouteComponent route={route} navigator={navigator} token={this.state.token} />;
   }
 
   render() {
