@@ -17,6 +17,7 @@ var routes = {
 class App extends Component {
   constructor(props) {
     super(props);
+    this.renderScene = this.renderScene.bind(this);
     this.state = {
       isLoggedIn: false,
       token: ''
