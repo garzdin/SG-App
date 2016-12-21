@@ -9,12 +9,12 @@ import {
   Text
 } from 'react-native';
 import Login from './login';
-import Start from './start';
+import Devices from './devices';
 import Details from './details';
 
 let routesList = [
   { index: 0, component: Login, title: 'Login' },
-  { index: 1, component: Start, title: 'Devices' },
+  { index: 1, component: Devices, title: 'Devices' },
   { index: 2, component: Details, title: 'Details' }
 ];
 

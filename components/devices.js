@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { routes } from './app';
 
-class Start extends Component {
+class Devices extends Component {
   constructor(props) {
     super(props)
     this.renderRow = this.renderRow.bind(this);
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Start;
+export default Devices;
