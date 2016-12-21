@@ -109,19 +109,7 @@ class App extends Component {
                 }
                },
                Title: (route, navigator, index, navState) => {
-                 switch (route.name) {
-                   case 'login':
-                     return (<Text style={styles.title}>Login</Text>)
-                     break
-                  case 'devices':
-                       return (<Text style={styles.title}>Devices</Text>)
-                       break
-                  case 'details':
-                    return (<Text style={styles.title}>Details</Text>)
-                    break
-                  default:
-                    return null
-                 }
+                 return (<Text style={styles.title}>{routes[route.name].title}</Text>)
                }
               }}
               style={styles.navigation}
