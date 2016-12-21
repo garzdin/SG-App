@@ -19,8 +19,12 @@ class Details extends Component {
   }
 
   renderRow(rowData, section, row) {
+    let date = new Date(rowData.dateRead).toISOString().slice(0, 10);
     return (
-      <Text style={styles.rowText}>{rowData.dateRead} {rowData.humidity } % | {rowData.temperature} C | {rowData.light} lux</Text>
+      <View style={styles.row}>
+        <Text style={styles.historyDate}>{date}</Text>
+        <Text style={styles.historyMetrics}>H: {rowData.humidity}% T: {rowData.temperature}C L: {rowData.light}lux</Text>
+      </View>
     )
   }
 
@@ -32,12 +36,13 @@ class Details extends Component {
   }
 
   render() {
+    let date = new Date(this.props.data.dateAdded).toISOString().slice(0, 10);
     return (
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.title}>{this.props.data.name}</Text>
           <Text style={styles.description}>Serial number: {this.props.data.serialNumber}</Text>
-          <Text style={styles.description}>Added on: {this.props.data.dateAdded}</Text>
+          <Text style={styles.description}>Added on: {date}</Text>
           <View style={styles.metrics}>
             <Text style={styles.metric}>Humidity: {this.getLastReading().humidity} %</Text>
             <Text style={styles.metric}>Temperature: {this.getLastReading().temperature} C</Text>
@@ -96,17 +101,30 @@ const styles = StyleSheet.create({
   },
   historyLabel: {
     marginTop: 40,
-    marginLeft: 20,
+    marginLeft: 15,
     fontSize: 16,
     color: 'white'
   },
   list: {
     marginTop: 10
   },
-  rowText: {
-    color: '#ffffff',
-    textAlign: 'center',
-    marginBottom: 5
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 5,
+    marginLeft: 15,
+    marginRight: 15
+  },
+  historyDate: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    color: '#ffffff'
+  },
+  historyMetrics: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+    color: '#ffffff'
   }
 })
 
