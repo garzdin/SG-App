@@ -14,11 +14,19 @@ class Login extends Component {
     this.login = this.login.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      emailError: "User don't exist",
+      emailErrorShown: false,
+      passwordError: "Wrong password",
+      passwordErrorShown: false,
     }
   }
 
   login() {
+    this.setState({ emailErrorShown: false, passwordErrorShown: false });
+    if (!this.state.email || !this.state.password) {
+      return this.setState({ emailError: "Provide an email and a password", emailErrorShown: true });
+    }
     fetch('https://smartgardenapi.herokuapp.com/login/', {
       method: 'POST',
       headers: {
@@ -32,6 +40,17 @@ class Login extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      if (responseJson.message) {
+        console.log(responseJson.message)
+        switch (responseJson.message) {
+          case "User not found":
+            this.setState({ emailError: responseJson.message, emailErrorShown: true })
+          case "Wrong password":
+            this.setState({ passwordError: responseJson.message, passwordErrorShown: true })
+          default:
+            return
+        }
+      }
       if (responseJson.token != null) {
         AsyncStorage.setItem('@SmartGarden:token', responseJson.token, (error) => {
           if (error) {
@@ -52,6 +71,7 @@ class Login extends Component {
             <Text style={styles.logoLabelOne}>Smart</Text>
             <Text style={styles.logoLabelTwo}>Garden</Text>
           </View>
+          {this.state.emailErrorShown ? <Text style={styles.error}>{this.state.emailError}</Text> : null}
           <TextInput
             style={styles.input}
             keyboardType='email-address'
@@ -61,6 +81,7 @@ class Login extends Component {
             autoCorrect={false}
             onChangeText={(email) => this.setState({ email: email })}
           />
+          {this.state.passwordErrorShown ? <Text style={styles.error}>{this.state.passwordError}</Text> : null}
           <TextInput
             style={styles.input}
             placeholder='Password'
@@ -131,6 +152,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#ffffff'
+  },
+  error: {
+    alignSelf: 'flex-end',
+    color: 'red',
+    fontSize: 12
   }
 })
 
