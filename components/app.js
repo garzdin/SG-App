@@ -74,6 +74,7 @@ class App extends Component {
                   case 'details':
                     return (
                       <TouchableHighlight
+                        underlayColor='#48CFAD'
                         onPress={() => {
                           navigator.pop()
                         }}
@@ -90,6 +91,7 @@ class App extends Component {
                 if (route.name === 'devices') {
                   return (
                     <TouchableHighlight
+                      underlayColor='#48CFAD'
                       onPress={() => {
                         AsyncStorage.removeItem('@SmartGarden:token', (error) => {
                           if (error) {
