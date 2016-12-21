@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   historyLabel: {
     marginTop: 40,
     marginLeft: 20,
-    fontSize: 14,
+    fontSize: 16,
     color: 'white'
   },
   list: {
