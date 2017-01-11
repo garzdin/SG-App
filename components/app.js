@@ -131,18 +131,18 @@ const styles = StyleSheet.create({
   title: {
     color: '#ffffff',
     fontWeight: '600',
-    paddingTop: 10
+    marginTop: 10
   },
   leftBarButton: {
     color: '#ffffff',
     fontWeight: '600',
-    paddingTop: 10,
+    marginTop: 10,
     marginLeft: 10
   },
   rightBarButton: {
     color: '#ffffff',
     fontWeight: '600',
-    paddingTop: 10,
+    marginTop: 10,
     marginRight: 10
   }
 })
